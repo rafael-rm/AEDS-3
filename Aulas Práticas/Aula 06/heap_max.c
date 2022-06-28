@@ -15,7 +15,7 @@ Heap:
 #include <math.h>
 #include <string.h>
 
-#define TAMANHO 10 // Tamanho da fila de prioridade
+#define TAMANHO_FILA 10
 #define VAZIO 0
 #define TRUE 1
 #define FALSE 0
@@ -28,7 +28,7 @@ typedef struct palavra
 
 typedef struct fila
 {
-    s_palavra palavras[TAMANHO];
+    s_palavra *palavras;
     int quantidade;
 } s_fila;
 
@@ -121,6 +121,7 @@ int menu()
 
 s_fila *criar_fila(){
     s_fila *fila = (s_fila *)malloc(sizeof(s_fila));
+    fila->palavras = (s_palavra *)malloc(sizeof(s_palavra) * TAMANHO_FILA);
     fila->quantidade = 0;
     return fila;
 }
@@ -183,7 +184,7 @@ int fila_vazia(s_fila *fila){
 }
 
 int fila_cheia(s_fila *fila){
-    return fila->quantidade == TAMANHO;
+    return fila->quantidade == TAMANHO_FILA;
 }
 
 int liberar_fila(s_fila *fila){
@@ -197,4 +198,3 @@ int acessar_fila(s_fila *fila, s_palavra *palavra_acessada){
     *palavra_acessada = fila->palavras[0];
     return TRUE;
 }
-
