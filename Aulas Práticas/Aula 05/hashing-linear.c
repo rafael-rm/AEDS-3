@@ -16,10 +16,11 @@ Aberto com Hash Linear para efetuar o tratamento de colisões;
 #define TRUE 1
 #define FALSE 0
 
-int criar_tabela_hash(int tamanho);
+int *criar_tabela_hash(int tamanho);
 int inserir_tabela_hash(int tabela[], int tamanho, int valor);
 int buscar_tabela_hash(int tabela[], int tamanho, int valor);
 int liberar_tabela_hash(int tabela[]);
+int menu();
 
 int main()
 {
@@ -94,7 +95,7 @@ int menu()
     return opcao_selecionada;
 }
 
-int criar_tabela_hash(int tamanho)
+int *criar_tabela_hash(int tamanho)
 {
     int *tabela = (int *)malloc(tamanho * sizeof(int));
     for (int i = 0; i < tamanho; i++)

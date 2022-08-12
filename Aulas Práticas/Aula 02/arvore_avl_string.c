@@ -21,7 +21,7 @@ typedef struct node s_node;
 int menu();
 s_node *criar_arvore();
 s_node *inserir_elemento(s_node *raiz, char palavra[]);
-//s_node *remover_elemento(s_node *raiz, char palavra[]);
+// s_node *remover_elemento(s_node *raiz, char palavra[]);
 s_node *rotacao_esquerda(s_node *raiz);
 s_node *rotacao_direita(s_node *raiz);
 s_node *rotacao_dupla_esquerda(s_node *raiz);
@@ -31,8 +31,8 @@ int buscar_elemento(s_node *raiz, char palavra[]);
 int altura_arvore(s_node *raiz);
 int fator_balanceamento(s_node *raiz);
 void imprimir_in_ordem(s_node *raiz);
-//void imprimir_pre_ordem(s_node *raiz);
-//void imprimir_pos_ordem(s_node *raiz);
+// void imprimir_pre_ordem(s_node *raiz);
+// void imprimir_pos_ordem(s_node *raiz);
 
 int main()
 {
@@ -76,7 +76,7 @@ int main()
             printf("\nInsira a palavra que deseja remover da arvore: ");
             setbuf(stdin, NULL);
             gets(temp_char);
-            //raiz = remover_elemento(raiz, temp_char);
+            // raiz = remover_elemento(raiz, temp_char);
             break;
 
         // Imprimir arvore pre ordem
@@ -84,6 +84,13 @@ int main()
             system("cls");
             printf("\nImprimindo arvore in ordem...\n");
             imprimir_in_ordem(raiz);
+            system("pause > nul");
+            break;
+
+        // Tamanho da arvore
+        case 5:
+            system("cls");
+            printf("Tamanho da arvore: %d\n", altura_arvore(raiz));
             system("pause > nul");
             break;
         }
@@ -104,14 +111,12 @@ int menu()
         printf(" [2] Buscar elemento na arvore\n");
         printf(" [3] Remover elemento na arvore\n");
         printf(" [4] Imprimir arvore (pre ordem)\n");
-        printf(" [5] Imprimir arvore (in ordem)\n");
-        printf(" [6] Imprimir arvore (pos ordem)\n");
-        printf(" [7] Altura da arvore\n");
+        printf(" [5] Tamanho da arvore\n");
         printf(" [0] Sair\n");
         printf("\nOpcao: ");
         scanf("%d", &opcao_selecionada);
         system("cls");
-    } while (!(opcao_selecionada >= 0 && opcao_selecionada <= 7));
+    } while (!(opcao_selecionada >= 0 && opcao_selecionada <= 8));
 
     return opcao_selecionada;
 }
@@ -259,5 +264,4 @@ void imprimir_in_ordem(s_node *raiz)
         printf("%s\n", raiz->palavra);
         imprimir_in_ordem(raiz->direita);
     }
-    return raiz;
 }
