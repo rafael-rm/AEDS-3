@@ -352,7 +352,7 @@ void dijkstra(int v)
     for (int i = 1; i <= grafo.n_vertices; i++)
     {
         grafo.adj[i]->distancia = INFINITO; // Coloca todos os vertices na distancia infinita
-        grafo.adj[i]->anterior = -1;      // Coloca todos os vertices no antecessor -1
+        grafo.adj[i]->antecessor = -1;      // Coloca todos os vertices sem antecessor
     }
     printf("\n [INFO] Dijkstra em andamento...");
     dijkstra_recursiva(v);
@@ -360,5 +360,26 @@ void dijkstra(int v)
 }
 
 void dijkstra_recursiva(int v){
-    
+    grafo.adj[v]->distancia = 0; // Coloca o vertice v na distancia 0
+    s_no *aux = grafo.adj[v];
+    while (aux != NULL)
+    {
+        if (grafo.adj[aux->vertice]->distancia > grafo.adj[v]->distancia + aux->aresta->peso)
+        {
+            grafo.adj[aux->vertice]->distancia = grafo.adj[v]->distancia + aux->aresta->peso;
+            grafo.adj[aux->vertice]->antecessor = v;
+            printf("\n [INFO] Distancia do vertice %d para o vertice %d: %d.", v, aux->vertice, grafo.adj[aux->vertice]->distancia);
+        }
+        aux = aux->aresta->prox;
+    }
+    aux = grafo.adj[v];
+
+    while (aux != NULL)
+    {
+        if (grafo.adj[aux->vertice]->cor == BRANCO) // Verifica se o vertice adjacente ao vertice v é branco
+        {
+            dijkstra_recursiva(aux->vertice); // Chama a função recursiva para o vertice adjacente ao vertice v
+        }
+        aux = aux->aresta->prox;
+    }
 }

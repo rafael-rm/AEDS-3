@@ -180,13 +180,7 @@ int main()
             scanf("%d", &temp1);
             if (temp1 <= grafo.n_vertices && temp1 > 0)
             {
-                //dijkstra(temp1);
-                s_no *aux;
-                for(int i = 1; i <= grafo.n_vertices; i++)
-                {
-                    aux = grafo.adj[i];
-                    printf("\n [INFO] O vertice %d possui distancia %d.\n", i, aux->distancia);
-                }
+                dijkstra(temp1);
             }
             else
             {
