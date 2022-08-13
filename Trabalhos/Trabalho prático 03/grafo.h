@@ -60,7 +60,7 @@ void busca_em_largura(int v);
 int remove_fila(s_fila *fila);
 void insere_fila(s_fila *fila, int v);
 void dijkstra(int v);
-void dijkstra_recursivo(int v);
+void dijkstra_recursiva(int v);
 
 s_grafo grafo;
 

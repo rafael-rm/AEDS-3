@@ -175,16 +175,24 @@ void arestas_incidentes_v(int v)
     }
 }
 
+// Grau do vertice (contar quantas arestas chegam no vertice)
 int grau_v(int v)
 {
-    int grau = 0;
+    int contador = 0;
     s_no *aux = grafo.adj[v];
-    while (aux != NULL)
+    if (aux == NULL)
     {
-        grau++;
-        aux = aux->aresta->prox;
+        printf("\n [ERROR] O vertice %d nao possui arestas adjacentes.\n\n", v);
     }
-    return grau;
+    else
+    {
+        while (aux != NULL)
+        {
+            contador++;
+            aux = aux->aresta->prox; // Ponteiro para o proximo vertice adjacente
+        }
+    }
+    return contador;
 }
 
 void v_adjacente_v(int v1, int v2)
@@ -308,7 +316,7 @@ void busca_em_largura(int v)
     grafo.tempo_total = 0;
     for (int i = 1; i <= grafo.n_vertices; i++)
     {
-        grafo.adj[i]->cor = BRANCO; // Coloca todos os vertices na cor branca
+        grafo.adj[i]->cor = BRANCO; // Coloca tzzodos os vertices na cor branca
     }
     printf("\n [INFO] Busca em largura em andamento...");
     fila = cria_fila();
